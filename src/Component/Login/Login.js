@@ -65,7 +65,7 @@ const Login = () => {
         })
         .then((data) => {
           dispatch(authActions.login(data));
-          console.log(data);
+          // console.log(data);
           if (isLogin) {
             history.replace("./");
           } else {
