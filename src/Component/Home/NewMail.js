@@ -1,13 +1,18 @@
 import { Button, Form } from "react-bootstrap";
 import React, { useState, useRef, Fragment } from "react";
 import JoditEditor from "jodit-react";
-// import htmlToFormattedText from "html-to-formatted-text";
 
 const NewMail = () => {
   const emailInput = useRef(null);
   const subjectInput = useRef(null);
   const editorContent = useRef(null);
   const [content, setContent] = useState("");
+  var today = new Date();
+  var date =
+    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
+  var time =
+    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+  var dateTime = date + " " + time;
 
   const senderEmail = JSON.parse(localStorage.getItem("token")).email;
 
@@ -18,6 +23,7 @@ const NewMail = () => {
       receiverMail: emailInput.current.value,
       subject: subjectInput.current.value,
       message: editorContent.current.value,
+      timings: dateTime,
     };
     const receiverEmail = composedMailInfo.receiverMail.replace(
       /[^a-z0-9]/gi,
@@ -66,7 +72,7 @@ const NewMail = () => {
 
   return (
     <Fragment>
-      <Form onSubmit={formSubmitHandler}>
+      <Form onSubmit={formSubmitHandler} className="my-5">
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Email address</Form.Label>
           <Form.Control
