@@ -8,6 +8,7 @@ import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 // import AuthContext from "./Store/auth-context";
 import { useSelector } from "react-redux";
 import ForgotPassword from "./Component/Login/ForgotPassword";
+import ReadMessage from "./Component/Home/ReadMessage";
 
 function App() {
   const isAuthLogin = useSelector((state) => state.auth.isLoggedIn);

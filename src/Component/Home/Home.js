@@ -1,21 +1,32 @@
 import { Fragment } from "react";
 import NewMail from "./NewMail";
-import { Col, Row } from "react-bootstrap";
+import { Button, Col, Row } from "react-bootstrap";
 import { Route, NavLink } from "react-router-dom/cjs/react-router-dom.min";
 
 import classes from "./Home.module.css";
 import Inbox from "./Inbox";
+import { useDispatch } from "react-redux";
+import { authActions } from "../../Store/auth-reducer";
+import ReadMessage from "./ReadMessage";
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  const logoutHandler = (event) => {
+    event.preventDefault();
+    dispatch(authActions.logout());
+  };
+
   return (
     <Fragment>
       <h1>
         Welcome to your <b>Mail Box</b>
       </h1>
+      <Button onClick={logoutHandler}>Logout</Button>
       <div>
         <Row className="m-0">
           <Col
-            className="col-md-2"
+            className="col-md-2 col-12"
             style={{ background: "black", height: "100%" }}
           >
             <NavLink
@@ -40,17 +51,11 @@ const Home = () => {
               <p>Sent</p>
             </NavLink>
           </Col>
-          <Col className="col-md-1">
-            <div className="d-flex" style={{ height: "100%" }}>
-              <div className="vr"></div>
-            </div>
-          </Col>
-          <Col className="col-md-8">
-            <h1>This is other components</h1>
+          <Col className="col-md-10 col-12 mx-auto">
             <Route path="/Home/New-mail">
               <NewMail />
             </Route>
-            <Route path="/Home/Inbox">
+            <Route path="/Home/Inbox" exact>
               <Inbox />
             </Route>
             <Route path="/Home/Sent">

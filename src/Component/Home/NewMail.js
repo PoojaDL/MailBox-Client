@@ -24,7 +24,9 @@ const NewMail = () => {
       subject: subjectInput.current.value,
       message: editorContent.current.value,
       timings: dateTime,
+      read: false,
     };
+
     const receiverEmail = composedMailInfo.receiverMail.replace(
       /[^a-z0-9]/gi,
       ""
@@ -46,7 +48,8 @@ const NewMail = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        alert("Sent your mail successfully");
+        // console.log(data);
       })
       .catch((error) => console.log(error));
 
@@ -65,7 +68,7 @@ const NewMail = () => {
         }
       })
       .then((data) => {
-        console.log(data);
+        // console.log(data);
       })
       .catch((error) => console.log(error));
   };

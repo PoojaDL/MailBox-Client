@@ -39,7 +39,6 @@ const Login = () => {
       } else {
         url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${MyAPI}`;
       }
-      console.log(url);
 
       fetch(url, {
         method: "POST",
