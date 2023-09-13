@@ -2,7 +2,7 @@ import htmlToFormattedText from "html-to-formatted-text";
 import { Fragment } from "react";
 import { Button } from "react-bootstrap";
 
-const InboxMessages = (props) => {
+const SentMessages = (props) => {
   const email = JSON.parse(localStorage.getItem("token")).email;
   const receiverEmail = email.replace(/[^a-z0-9]/gi, "");
 
@@ -10,7 +10,7 @@ const InboxMessages = (props) => {
     event.preventDefault();
 
     fetch(
-      `https://emails-3d016-default-rtdb.firebaseio.com/receiver${receiverEmail}/${props.data.id}.json`,
+      `https://emails-3d016-default-rtdb.firebaseio.com/sender${receiverEmail}/${props.data.id}.json`,
       {
         method: "PUT",
         body: JSON.stringify({ ...props.data, read: true }),
@@ -27,7 +27,7 @@ const InboxMessages = (props) => {
   const deleteMail = (event) => {
     event.preventDefault();
     fetch(
-      `https://emails-3d016-default-rtdb.firebaseio.com/receiver${receiverEmail}/${props.data.id}.json`,
+      `https://emails-3d016-default-rtdb.firebaseio.com/sender${receiverEmail}/${props.data.id}.json`,
       {
         method: "DELETE",
       }
@@ -94,4 +94,4 @@ const InboxMessages = (props) => {
   );
 };
 
-export default InboxMessages;
+export default SentMessages;

@@ -27,8 +27,14 @@ const ReadMessage = (props) => {
           </Col>
           <Col className="col-8 ps-1 m-0">
             <div>
-              <p className="m-0">{props.getData.senderMail}</p>
-              <p className="m-0">To me</p>
+              <p className="m-0">
+                <b>Sender: </b>
+                {props.getData.senderMail}
+              </p>
+              <p className="m-0">
+                <b>Receiver: </b>
+                {props.getData.receiverMail}
+              </p>
             </div>
           </Col>
           <Col className="col-3">

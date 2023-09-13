@@ -7,7 +7,7 @@ import classes from "./Home.module.css";
 import Inbox from "./Inbox";
 import { useDispatch } from "react-redux";
 import { authActions } from "../../Store/auth-reducer";
-import ReadMessage from "./ReadMessage";
+import Sent from "./Sent";
 
 const Home = () => {
   const dispatch = useDispatch();
@@ -59,7 +59,7 @@ const Home = () => {
               <Inbox />
             </Route>
             <Route path="/Home/Sent">
-              <NewMail />
+              <Sent />
             </Route>
           </Col>
         </Row>
