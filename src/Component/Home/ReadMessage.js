@@ -8,8 +8,6 @@ const ReadMessage = (props) => {
     props.setRead(false);
   };
 
-  console.log(props.getData);
-
   return (
     <Fragment>
       <Button onClick={goBack}>Back</Button>
@@ -25,7 +23,7 @@ const ReadMessage = (props) => {
               style={{ margin: "0px" }}
             />
           </Col>
-          <Col className="col-8 ps-1 m-0">
+          <Col className="col-6 ps-3 m-0">
             <div>
               <p className="m-0">
                 <b>Sender: </b>
@@ -37,7 +35,7 @@ const ReadMessage = (props) => {
               </p>
             </div>
           </Col>
-          <Col className="col-3">
+          <Col className="col-5">
             <p className="m-0">{props.getData.timings}</p>
           </Col>
         </Row>

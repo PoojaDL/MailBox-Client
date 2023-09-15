@@ -1,18 +1,19 @@
 import { Button, Form } from "react-bootstrap";
 import React, { useState, useRef, Fragment } from "react";
 import JoditEditor from "jodit-react";
+import { useDispatch } from "react-redux";
+import { inboxActions } from "../../Store/inbox-reducer";
+import { sentActions } from "../../Store/sent-reducer";
 
 const NewMail = () => {
+  const dispatch = useDispatch();
   const emailInput = useRef(null);
   const subjectInput = useRef(null);
   const editorContent = useRef(null);
   const [content, setContent] = useState("");
-  var today = new Date();
-  var date =
-    today.getFullYear() + "-" + (today.getMonth() + 1) + "-" + today.getDate();
-  var time =
-    today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-  var dateTime = date + " " + time;
+  var today = new Date().toLocaleDateString();
+  var time = new Date().toLocaleTimeString();
+  const dateTime = today + " at " + time;
 
   const senderEmail = JSON.parse(localStorage.getItem("token")).email;
 
@@ -49,7 +50,11 @@ const NewMail = () => {
       })
       .then((data) => {
         alert("Sent your mail successfully");
-        // console.log(data);
+        if (composedMailInfo.receiverMail === composedMailInfo.senderMail) {
+          dispatch(inboxActions.newInboxMessage());
+        }
+
+        dispatch(sentActions.newSentMessage());
       })
       .catch((error) => console.log(error));
 

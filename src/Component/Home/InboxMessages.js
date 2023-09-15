@@ -1,6 +1,7 @@
 import htmlToFormattedText from "html-to-formatted-text";
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import { Button } from "react-bootstrap";
+import classes from "./Home.module.css";
 
 const InboxMessages = (props) => {
   const email = JSON.parse(localStorage.getItem("token")).email;
@@ -50,7 +51,7 @@ const InboxMessages = (props) => {
   return (
     <Fragment>
       <tr>
-        <td className="py-0">
+        <td className={`py-0 ${classes.tableCol}`}>
           {!props.data.read ? (
             <div
               style={{
@@ -94,4 +95,4 @@ const InboxMessages = (props) => {
   );
 };
 
-export default InboxMessages;
+export default memo(InboxMessages);

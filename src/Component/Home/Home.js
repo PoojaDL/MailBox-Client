@@ -1,66 +1,38 @@
-import { Fragment } from "react";
+import { Fragment, memo } from "react";
 import NewMail from "./NewMail";
-import { Button, Col, Row } from "react-bootstrap";
-import { Route, NavLink } from "react-router-dom/cjs/react-router-dom.min";
+import { Col, Row } from "react-bootstrap";
+import { Route, Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
-import classes from "./Home.module.css";
+// import classes from "./Home.module.css";
 import Inbox from "./Inbox";
-import { useDispatch } from "react-redux";
-import { authActions } from "../../Store/auth-reducer";
+// import { useSelector } from "react-redux";
 import Sent from "./Sent";
+import Sidebar from "./Sidebar";
 
 const Home = () => {
-  const dispatch = useDispatch();
-
-  const logoutHandler = (event) => {
-    event.preventDefault();
-    dispatch(authActions.logout());
-  };
+  // const inbox = useSelector((state) => state.inbox);
+  // const sent = useSelector((state) => state.sent);
 
   return (
     <Fragment>
-      <h1>
-        Welcome to your <b>Mail Box</b>
-      </h1>
-      <Button onClick={logoutHandler}>Logout</Button>
       <div>
         <Row className="m-0">
-          <Col
-            className="col-md-2 col-12"
-            style={{ background: "black", height: "100%" }}
-          >
-            <NavLink
-              activeClassName={classes.active}
-              className={classes.navLink}
-              to="/Home/New-mail"
-            >
-              <p>New Mail</p>
-            </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              className={classes.navLink}
-              to="/Home/Inbox"
-            >
-              <p>Inbox</p>
-            </NavLink>
-            <NavLink
-              activeClassName={classes.active}
-              className={classes.navLink}
-              to="/Home/Sent"
-            >
-              <p>Sent</p>
-            </NavLink>
+          <Col className="col-2">
+            <Sidebar />
           </Col>
-          <Col className="col-md-10 col-12 mx-auto">
-            <Route path="/Home/New-mail">
-              <NewMail />
-            </Route>
-            <Route path="/Home/Inbox" exact>
-              <Inbox />
-            </Route>
-            <Route path="/Home/Sent">
-              <Sent />
-            </Route>
+          <Col className="col-10 mx-auto">
+            <div style={{ width: "60%", margin: "auto auto" }}>
+              <Redirect to="/Home/Inbox" />
+              <Route path="/Home/New-mail">
+                <NewMail />
+              </Route>
+              <Route path="/Home/Inbox">
+                <Inbox />
+              </Route>
+              <Route path="/Home/Sent">
+                <Sent />
+              </Route>
+            </div>
           </Col>
         </Row>
       </div>
@@ -68,4 +40,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default memo(Home);

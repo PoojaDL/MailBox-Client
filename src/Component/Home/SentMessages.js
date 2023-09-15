@@ -67,7 +67,7 @@ const SentMessages = (props) => {
           )}
         </td>
         <td className=" ps-1 p-3" onClick={readMessageHandler}>
-          {props.data.senderMail}
+          {props.data.receiverMail}
         </td>
         <td className="p-3" onClick={readMessageHandler}>
           {props.data.subject}
