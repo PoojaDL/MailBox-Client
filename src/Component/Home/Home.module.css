@@ -1,3 +1,46 @@
-.tableCol {
-  width: 10%;
+.heading {
+  color: white;
+  position: fixed;
+  top: 1.3rem;
+  right: 2rem;
+}
+
+@media (max-width: 990px) {
+  .tableHeading {
+    display: none;
+  }
+
+  .timings {
+    display: none;
+  }
+}
+
+.listDiv {
+  border: 1px solid black;
+  border-radius: 0.5rem;
+}
+
+.listDiv:hover {
+  margin: 0.5rem;
+}
+
+.contents {
+  width: 80%;
+}
+
+@media (max-width: 720px) {
+  .contents {
+    width: 90%;
+  }
+
+  .closingBtn {
+    display: block;
+  }
+}
+
+@media (min-width: 720px) {
+  .closingBtn {
+    display: none;
+    visibility: hidden;
+  }
 }

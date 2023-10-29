@@ -76,11 +76,21 @@ const NewMail = () => {
         // console.log(data);
       })
       .catch((error) => console.log(error));
+
+    emailInput.current.value = "";
+    subjectInput.current.value = "";
+    editorContent.current.value = "";
   };
 
   return (
     <Fragment>
-      <Form onSubmit={formSubmitHandler} className="my-5">
+      <div align="center" className="mt-3">
+        <h4>
+          <b>Compose Your Mail</b>
+        </h4>
+      </div>
+      <hr />
+      <Form onSubmit={formSubmitHandler} className="my-4">
         <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
           <Form.Label>Email address</Form.Label>
           <Form.Control
@@ -102,7 +112,11 @@ const NewMail = () => {
             onChange={(newContent) => setContent(newContent)}
           />
         </Form.Group>
-        <Button type="submit">Submit</Button>
+        <div align="center">
+          <Button className="btn-dark btn-md" type="submit">
+            Submit
+          </Button>
+        </div>
       </Form>
     </Fragment>
   );

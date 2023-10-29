@@ -37,6 +37,7 @@ function App() {
         })
         .then((data) => {
           if (data !== null) {
+            // console.log(data);
             if (type === "receiver") {
               dispatch(inboxActions.addInboxMail(data));
             } else {

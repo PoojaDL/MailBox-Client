@@ -1,6 +1,7 @@
 import htmlToFormattedText from "html-to-formatted-text";
 import { Fragment } from "react";
 import { Button } from "react-bootstrap";
+import styles from "./Home.module.css";
 
 const SentMessages = (props) => {
   const email = JSON.parse(localStorage.getItem("token")).email;
@@ -49,47 +50,72 @@ const SentMessages = (props) => {
 
   return (
     <Fragment>
-      <tr>
-        <td className="py-0">
-          {!props.data.read ? (
+      <div
+        className={`px-2 py-1 py-md-2 pb-0 my-3 ${styles.listDiv}`}
+        style={{ background: `${props.data.read && "#f2f2f2"}` }}
+      >
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "left",
+          }}
+        >
+          <div
+            onClick={readMessageHandler}
+            style={{
+              display: "flex",
+              flexWrap: "wrap",
+              rowGap: "0rem",
+              columnGap: "0.5rem",
+              flexDirection: "row",
+              width: "100%",
+              justifyContent: "left",
+            }}
+          >
+            <img
+              src="https://cdn-icons-png.flaticon.com/128/3033/3033143.png"
+              alt="profile-pic"
+              width="25px"
+              height="25px"
+            />
+            <p
+              className="me-5 m-0 ms-1"
+              style={{ fontWeight: `${!props.data.read && "bolder"}` }}
+            >
+              To: {props.data.receiverMail}
+            </p>
+            <p
+              className="me-5 m-0"
+              style={{ fontWeight: `${!props.data.read && "bolder"}` }}
+            >
+              {props.data.subject}
+            </p>
             <div
               style={{
-                margin: "auto",
-                marginTop: "1.5rem",
-                width: "10px",
-                height: "10px",
-                background: "blue",
-                borderRadius: "50%",
+                maxWidth: "180px",
+                overflow: "hidden",
+                whiteSpace: "nowrap",
+                textOverflow: "clipped",
               }}
-            ></div>
-          ) : (
-            ""
-          )}
-        </td>
-        <td className=" ps-1 p-3" onClick={readMessageHandler}>
-          {props.data.receiverMail}
-        </td>
-        <td className="p-3" onClick={readMessageHandler}>
-          {props.data.subject}
-        </td>
-        <td
-          className="p-3"
-          style={{
-            maxWidth: "180px",
-            overflow: "hidden",
-            whiteSpace: "nowrap",
-            textOverflow: "clipped",
-          }}
-          onClick={readMessageHandler}
-        >
-          {htmlToFormattedText(props.data.message)}
-        </td>
-
-        <td className="p-3">{props.data.timings}</td>
-        <td className="p-3">
-          <Button onClick={deleteMail}>Delete</Button>
-        </td>
-      </tr>
+            >
+              <p className="me-5 m-0">
+                {htmlToFormattedText(props.data.message)}
+              </p>
+            </div>
+            <p className={`m-0 ms-3 ${styles.timings}`}>{props.data.timings}</p>
+          </div>
+          <span className="my-auto">
+            <Button className="p-0 btn-light">
+              <img
+                onClick={deleteMail}
+                style={{ width: "25px", height: "25px" }}
+                src="https://cdn-icons-png.flaticon.com/512/3221/3221845.png"
+                alt="delete"
+              />
+            </Button>
+          </span>
+        </div>
+      </div>
     </Fragment>
   );
 };
